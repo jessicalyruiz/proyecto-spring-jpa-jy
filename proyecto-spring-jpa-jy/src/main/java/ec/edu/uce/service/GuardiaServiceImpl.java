@@ -20,7 +20,7 @@ public class GuardiaServiceImpl implements IGuardiaService{
 
 	@Override
 	public void borrarGuardiaId(Integer id) {
-		// TODO Auto-generated method stub
+		this.guardiaRepo.borrarGuardiaId(id);
 		
 	}
 
@@ -33,7 +33,13 @@ public class GuardiaServiceImpl implements IGuardiaService{
 	@Override
 	public Guardia buscarGuardiaId(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.guardiaRepo.buscarGuardiaId(id);
+	}
+
+	@Override
+	public Guardia buscarGuardiaApellido(String apellido) {
+		// TODO Auto-generated method stub
+		return this.guardiaRepo.buscarGuardiaApellido(apellido);
 	}
 
 }
