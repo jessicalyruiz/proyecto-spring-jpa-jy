@@ -1,5 +1,7 @@
 package ec.edu.uce;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,13 +10,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ec.edu.uce.modelo.Paciente;
 import ec.edu.uce.modelo.Receta;
 import ec.edu.uce.modelo.jpa.Guardia;
+import ec.edu.uce.repository.jpa.GuardiaRepoImpl;
 import ec.edu.uce.service.IGestorCitaService;
 import ec.edu.uce.service.IGuardiaService;
 import ec.edu.uce.service.IPacienteService;
 
 @SpringBootApplication
 public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
-
+	private static final Logger LOG= (Logger) LoggerFactory.getLogger(ProyectoSpringJpaJyApplication.class);
+	
 	@Autowired
 	private IPacienteService pacienteService ;
 	
@@ -58,7 +62,7 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		
 		Guardia guardia=new Guardia();
 		guardia.setNombre("alex");
-		guardia.setApellido("alo2");
+		guardia.setApellido("onz");
 		guardia.setEdificio("la carolina");
 		guardiaService.guardarGuardia(guardia);
 		guardiaService.actualizarGuardia(guardia);
@@ -67,8 +71,16 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		System.out.println(guardia2.toString());
 		//guardiaService.borrarGuardiaId(5);
 		
-		Guardia guardiaApellido=guardiaService.buscarGuardiaApellido("alo2");
-		System.out.println(guardiaApellido.toString());
+		//Guardia guardiaApellido=guardiaService.buscarGuardiaApellido("alo2");
+		System.out.println(guardiaService.buscarGuardiaApellidoLista("perales").toString());
+		
+		Guardia guardiaTyped=guardiaService.buscarGuardiaApellidoType("gonz");
+		System.out.println(guardiaTyped.toString());
+		
+		
+		Guardia guardiaNamed=guardiaService.buscarGuardiaApellidoType("gonz");
+		LOG.info(guardiaNamed.toString());
+		
 	}
 
 }

@@ -5,11 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "guardia")
+@NamedQueries({
+	@NamedQuery(name = "Guardia.buscarApellido", query = "select g from Guardia g where g.apellido=:valor"),
+	@NamedQuery(name = "Guardia.buscarApellido2", query = "select g from Guardia g where g.apellido=:valor"),
+	@NamedQuery(name = "Guardia.buscarApellido3", query = "select g from Guardia g where g.apellido=:valor")})
 public class Guardia {
 
 	@Id

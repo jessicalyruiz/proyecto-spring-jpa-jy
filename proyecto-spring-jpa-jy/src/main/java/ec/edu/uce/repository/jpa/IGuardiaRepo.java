@@ -9,4 +9,7 @@ public interface IGuardiaRepo {
 	public void actualizarGuardia(Guardia guardia);
 	public Guardia buscarGuardiaId(Integer id);
 	public Guardia buscarGuardiaApellido(String apellido);
+	public Guardia buscarGuardiaApellidoLista(String apellido);
+	public Guardia buscarGuardiaApellidoType(String apellido);
+	public Guardia buscarGuardiaApellidoNamed(String apellido);
 }
