@@ -80,7 +80,7 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		
 		Guardia guardiaNamed=guardiaService.buscarGuardiaApellidoType("gonz");
 		LOG.info(guardiaNamed.toString());
-		
+		//comentario para el branch
 	}
 
 }
