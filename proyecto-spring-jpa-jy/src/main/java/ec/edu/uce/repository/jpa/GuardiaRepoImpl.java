@@ -122,4 +122,14 @@ public class GuardiaRepoImpl implements IGuardiaRepo{
 
 
 
+	@Override
+	public Guardia buscarGuardiaApellidoNative(String apellido) {
+		Query query=this.entityManager.createNativeQuery("select * from guardia g where g.apellido=:valor",Guardia.class);
+		query.setParameter("valor", apellido);
+		Guardia guard= (Guardia) query.getSingleResult();
+		return guard;
+	}
+
+
+
 }

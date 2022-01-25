@@ -60,4 +60,10 @@ public class GuardiaServiceImpl implements IGuardiaService{
 		return this.buscarGuardiaApellidoNamed(apellido);
 	}
 
+	@Override
+	public Guardia buscarGuardiaApellidoNative(String apellido) {
+		// TODO Auto-generated method stub
+		return this.guardiaRepo.buscarGuardiaApellidoNative(apellido);
+	}
+
 }
