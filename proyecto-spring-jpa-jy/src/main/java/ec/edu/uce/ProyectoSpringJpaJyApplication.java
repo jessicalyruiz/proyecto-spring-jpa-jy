@@ -61,12 +61,12 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 //		this.gestorCita.registrarNuevaConsulta(paciente1, receta);
 		
 		Guardia guardia=new Guardia();
-		guardia.setNombre("alex");
-		guardia.setApellido("onz");
-		guardia.setEdificio("la carolina");
-		guardiaService.guardarGuardia(guardia);
-		guardiaService.actualizarGuardia(guardia);
-		
+		guardia.setNombre("ivan");
+		guardia.setApellido("flores");
+		guardia.setEdificio("inca");
+		//guardiaService.guardarGuardia(guardia);
+		//guardiaService.actualizarGuardia(guardia);
+		/*
 		Guardia guardia2=guardiaService.buscarGuardiaId(3);
 		System.out.println(guardia2.toString());
 		//guardiaService.borrarGuardiaId(5);
@@ -81,6 +81,23 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		Guardia guardiaNamed=guardiaService.buscarGuardiaApellidoType("gonz");
 		LOG.info(guardiaNamed.toString());
 		//comentario para el branch
+		
+		
+		//native named
+		//LOG.info("**********named native");
+		//LOG.info(guardiaService.buscarGuardiaApellidoNamedNative("gonz").toString());
+		*/
+		
+		
+		///criteria
+		LOG.info("**********Criteria");
+		LOG.info(guardiaService.buscarGuardiaApellidoCreiteriaAPI("gonz").toString());
+		
+		LOG.info(guardiaService.buscarGuardiaApellidoCreiteriaAPIor("flores", "inca").toString());
+		LOG.info(guardiaService.buscarGuardiaApellidoCreiteriaAPIand("gonz", "la carolina").toString());
+		
+		
+		
 	}
 
 }
