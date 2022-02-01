@@ -1,5 +1,10 @@
 package ec.edu.uce;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +14,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import ec.edu.uce.modelo.Paciente;
 import ec.edu.uce.modelo.Receta;
+import ec.edu.uce.modelo.jpa.DetalleFactura;
+import ec.edu.uce.modelo.jpa.Factura;
 import ec.edu.uce.modelo.jpa.Guardia;
 import ec.edu.uce.repository.jpa.GuardiaRepoImpl;
+import ec.edu.uce.service.IFacturaService;
 import ec.edu.uce.service.IGestorCitaService;
 import ec.edu.uce.service.IGuardiaService;
 import ec.edu.uce.service.IPacienteService;
@@ -27,6 +35,9 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IGuardiaService guardiaService;
+	
+	@Autowired
+	private IFacturaService facturaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoSpringJpaJyApplication.class, args);
@@ -81,6 +92,34 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		Guardia guardiaNamed=guardiaService.buscarGuardiaApellidoType("gonz");
 		LOG.info(guardiaNamed.toString());
 		//comentario para el branch
+		
+		
+		//***********************
+		
+		Factura factura=new Factura();
+		factura.setCedula("2300115066");
+		factura.setFecha(LocalDate.now());
+		factura.setNumero("545-78-3");
+		//lista de dettalles
+		List<DetalleFactura> detalles=new ArrayList<>();
+		
+		DetalleFactura detalle1=new DetalleFactura();
+		detalle1.setCantidad(2);
+		detalle1.setPrecio(new BigDecimal(45.8));
+		detalle1.setFactura(factura);
+		
+		DetalleFactura detalle2=new DetalleFactura();
+		detalle2.setCantidad(2);
+		detalle2.setPrecio(new BigDecimal(78.4));
+		detalle2.setFactura(factura);
+		
+		
+		detalles.add(detalle1);
+		detalles.add(detalle2);
+		factura.setDetalles(detalles);
+		this.facturaService.guardarFactura(factura);
+		
+		
 	}
 
 }
