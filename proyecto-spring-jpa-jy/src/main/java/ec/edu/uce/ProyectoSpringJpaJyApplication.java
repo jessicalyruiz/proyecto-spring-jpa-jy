@@ -1,5 +1,7 @@
 package ec.edu.uce;
 
+import java.math.BigDecimal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +11,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import ec.edu.uce.modelo.Paciente;
 import ec.edu.uce.modelo.Receta;
+import ec.edu.uce.modelo.jpa.Ciudadano;
+import ec.edu.uce.modelo.jpa.Empleado;
 import ec.edu.uce.modelo.jpa.Guardia;
 import ec.edu.uce.repository.jpa.GuardiaRepoImpl;
 import ec.edu.uce.service.IGestorCitaService;
 import ec.edu.uce.service.IGuardiaService;
 import ec.edu.uce.service.IPacienteService;
+import ec.edu.uce.service.jpa.ICiudadanoService;
+
 
 @SpringBootApplication
 public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
@@ -27,6 +33,11 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IGuardiaService guardiaService;
+	
+	
+	
+	@Autowired
+	private ICiudadanoService ciudadanoService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoSpringJpaJyApplication.class, args);
@@ -59,7 +70,7 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 //		receta.setMedicamentos("paracetamol");
 //		
 //		this.gestorCita.registrarNuevaConsulta(paciente1, receta);
-		
+		/*
 		Guardia guardia=new Guardia();
 		guardia.setNombre("alex");
 		guardia.setApellido("onz");
@@ -81,6 +92,22 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		Guardia guardiaNamed=guardiaService.buscarGuardiaApellidoType("gonz");
 		LOG.info(guardiaNamed.toString());
 		//comentario para el branch
+		 * */
+		 
+		
+		//*********************************
+		
+		Ciudadano ciudadano=new Ciudadano();
+		ciudadano.setNombre("Jessica");
+		ciudadano.setApellido("yanez");
+		
+		Empleado empl=new Empleado();
+		empl.setIess("qwe111");
+		empl.setSalario(new BigDecimal(78945.45));
+		empl.setCiudadano(ciudadano);
+		
+		ciudadanoService.guardarCiudadano(ciudadano);
+		//empleadoService.guardarEmpleado(empl);
 	}
 
 }
