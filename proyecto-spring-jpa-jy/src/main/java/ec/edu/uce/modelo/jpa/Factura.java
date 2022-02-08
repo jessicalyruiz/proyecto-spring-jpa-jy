@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "factura")
 public class Factura {
+
+	
 
 	@Id
 	@Column(name = "fact_id")
@@ -33,7 +36,7 @@ public class Factura {
 	private LocalDate fecha;//no usar date pues esta deprecado
 
 	//una factura puede tener muchos detalles
-	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)//se dispara en cascada las inserciones
+	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)//se dispara en cascada las inserciones *****, fetch = FetchType.EAGER
 	private List<DetalleFactura> detalles;
 	
 	
@@ -78,5 +81,9 @@ public class Factura {
 		this.detalles = detalles;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Factura [id=" + id + ", cedula=" + cedula + ", numero=" + numero + ", fecha=" + fecha + ", detalles="
+				+ detalles + "]";
+	}
 }

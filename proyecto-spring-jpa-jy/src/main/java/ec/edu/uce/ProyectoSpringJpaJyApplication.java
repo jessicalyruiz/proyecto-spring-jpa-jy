@@ -2,7 +2,9 @@ package ec.edu.uce;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -108,6 +110,7 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		detalle1.setPrecio(new BigDecimal(45.8));
 		detalle1.setFactura(factura);
 		
+		
 		DetalleFactura detalle2=new DetalleFactura();
 		detalle2.setCantidad(2);
 		detalle2.setPrecio(new BigDecimal(78.4));
@@ -118,6 +121,34 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		detalles.add(detalle2);
 		factura.setDetalles(detalles);
 		this.facturaService.guardarFactura(factura);
+		
+		Factura factura2=new Factura();
+		List<Factura> listaFactura=new ArrayList<>();
+		
+		listaFactura=this.facturaService.buscarPorFechaJOIN(LocalDate.now());
+		//listaFactura.forEach(System.out::println);
+		/*
+		for(int i=0;i<listaFactura.size();i++){
+		    System.out.println(listaFactura.get(i));
+		}*/
+		LOG.info("Longitud"+listaFactura.size());
+		for(Factura f: listaFactura) {
+			LOG.info(f.toString());
+		}
+		
+		List<Factura> listaFacturaLeft=new ArrayList<>();
+		
+		listaFacturaLeft=this.facturaService.buscarPorFechaJOINLeft(LocalDate.now());
+		
+			List<Factura> listaFacturawhere=new ArrayList<>();
+		
+			listaFacturawhere=this.facturaService.buscarPorFechaJOINLeft(LocalDate.now());
+		LOG.info("*****************where**********Longitud"+listaFacturawhere.size());
+		for(Factura f: listaFacturawhere) {
+			LOG.info(f.toString());
+		}
+		
+		
 		
 		
 	}

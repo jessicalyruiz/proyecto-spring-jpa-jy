@@ -1,5 +1,9 @@
 package ec.edu.uce.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +20,24 @@ public class FacturaServiceImpl implements IFacturaService{
 	public void guardarFactura(Factura factura) {
 		// TODO Auto-generated method stub
 		this.facturaRepo.guardarFactura(factura);
+	}
+
+	@Override
+	public List<Factura> buscarPorFechaJOIN(LocalDate fecha) {
+		// TODO Auto-generated method stub
+		return this.facturaRepo.buscarPorFechaJOIN(fecha);
+	}
+
+	@Override
+	public List<Factura> buscarPorFechaJOINLeft(LocalDate fecha) {
+		// TODO Auto-generated method stub
+		return this.facturaRepo.buscarPorFechaJOINLeft(fecha);
+	}
+
+	@Override
+	public List<Factura> buscarPorFechaJOINWhere(LocalDate fecha) {
+		// TODO Auto-generated method stub
+		return this.facturaRepo.buscarPorFechaJOINWhere(fecha);
 	}
 
 }
