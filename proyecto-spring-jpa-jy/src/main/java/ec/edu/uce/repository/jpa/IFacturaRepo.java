@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import ec.edu.uce.modelo.jpa.Factura;
+import ec.edu.uce.modelo.jpa.FacturaSencillaTO;
 
 
 public interface IFacturaRepo {
@@ -15,6 +16,10 @@ public interface IFacturaRepo {
 	public List<Factura> buscarPorFechaJOINLeft(LocalDate fecha);
 	
 	public List<Factura> buscarPorFechaJOINWhere(LocalDate fecha);
+	
+	public List<Factura> buscarPorFechaJOINfetch(LocalDate fecha);
+	
+	public List<FacturaSencillaTO> buscarPorFechaSencilla(LocalDate fecha);
 //	public void borrarFacturaId(Integer id);
 //	public void actualizarFactura(Factura factura);
 //	public Factura buscarFacturaId(Integer id);

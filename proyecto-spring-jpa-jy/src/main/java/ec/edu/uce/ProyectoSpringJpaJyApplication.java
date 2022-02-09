@@ -14,12 +14,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import ch.qos.logback.core.net.server.Client;
 import ec.edu.uce.modelo.Paciente;
 import ec.edu.uce.modelo.Receta;
+import ec.edu.uce.modelo.jpa.Cliente;
 import ec.edu.uce.modelo.jpa.DetalleFactura;
 import ec.edu.uce.modelo.jpa.Factura;
+import ec.edu.uce.modelo.jpa.FacturaSencillaTO;
 import ec.edu.uce.modelo.jpa.Guardia;
 import ec.edu.uce.repository.jpa.GuardiaRepoImpl;
+import ec.edu.uce.service.IClienteServicejpa;
+import ec.edu.uce.service.IDetalleFacturaService;
 import ec.edu.uce.service.IFacturaService;
 import ec.edu.uce.service.IGestorCitaService;
 import ec.edu.uce.service.IGuardiaService;
@@ -41,6 +46,11 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 	@Autowired
 	private IFacturaService facturaService;
 	
+	@Autowired
+	private IDetalleFacturaService detalleService;
+	
+	@Autowired
+	private IClienteServicejpa clienteService;
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoSpringJpaJyApplication.class, args);
 	}
@@ -72,7 +82,7 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 //		receta.setMedicamentos("paracetamol");
 //		
 //		this.gestorCita.registrarNuevaConsulta(paciente1, receta);
-		
+		/*
 		Guardia guardia=new Guardia();
 		guardia.setNombre("alex");
 		guardia.setApellido("onz");
@@ -95,9 +105,9 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		LOG.info(guardiaNamed.toString());
 		//comentario para el branch
 		
-		
+		*/
 		//***********************
-		
+		/*
 		Factura factura=new Factura();
 		factura.setCedula("2300115066");
 		factura.setFecha(LocalDate.now());
@@ -121,16 +131,17 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		detalles.add(detalle2);
 		factura.setDetalles(detalles);
 		this.facturaService.guardarFactura(factura);
-		
-		Factura factura2=new Factura();
-		List<Factura> listaFactura=new ArrayList<>();
-		
-		listaFactura=this.facturaService.buscarPorFechaJOIN(LocalDate.now());
+		*/
+//		Factura factura2=new Factura();
+//		List<Factura> listaFactura=new ArrayList<>();
+//		
+//		listaFactura=this.facturaService.buscarPorFechaJOIN(LocalDate.now());
 		//listaFactura.forEach(System.out::println);
 		/*
 		for(int i=0;i<listaFactura.size();i++){
 		    System.out.println(listaFactura.get(i));
 		}*/
+		/*
 		LOG.info("Longitud"+listaFactura.size());
 		for(Factura f: listaFactura) {
 			LOG.info(f.toString());
@@ -147,10 +158,43 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		for(Factura f: listaFacturawhere) {
 			LOG.info(f.toString());
 		}
+		*/
+		/*
+		List<Factura> listaFetch=this.facturaService.buscarPorFechaJOINfetch(LocalDate.now());
+		LOG.info("*****************fetch**********Longitud"+listaFetch.size());
+		for(Factura f: listaFetch) {
+			LOG.info(f.toString());
+			LOG.info("Detalles: " +f.getDetalles());
+		}*/
 		
+		/*
+		List<DetalleFactura> listaPrecio=this.detalleService.BuscarProductos(new BigDecimal(50), LocalDate.now());
+		LOG.info("*****************Precio**********Longitud"+listaPrecio.size());
+		for(DetalleFactura d: listaPrecio) {
+			LOG.info(d.toString());
+			LOG.info("Factura:  "+d.getFactura().getFecha() );
+		}	
+	
+		*/
 		
+		/*
+		Cliente cliente= new Cliente();
+		cliente.setNombre("Jessica" );
+		List<String> telefonos= new ArrayList<>();
+		telefonos.add("4545212");
+		telefonos.add("7845452");
+		cliente.setTelefonos(telefonos);
+		clienteService.insertar(cliente);
+		*/
 		
+		List<FacturaSencillaTO> listaFactura=this.facturaService.buscarPorFechaSencilla(LocalDate.now());
+		for (FacturaSencillaTO f : listaFactura) {
+			LOG.info(f.toString());
+		}
 		
 	}
+	
+	
+	
 
 }

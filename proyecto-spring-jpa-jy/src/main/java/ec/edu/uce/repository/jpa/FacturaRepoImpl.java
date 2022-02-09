@@ -16,12 +16,13 @@ import org.springframework.stereotype.Repository;
 
 import ec.edu.uce.ProyectoSpringJpaJyApplication;
 import ec.edu.uce.modelo.jpa.Factura;
+import ec.edu.uce.modelo.jpa.FacturaSencillaTO;
 
 @Repository
 @Transactional
 public class FacturaRepoImpl implements IFacturaRepo {
 
-	private static final Logger LOG= (Logger) LoggerFactory.getLogger(ProyectoSpringJpaJyApplication.class);
+	private static final Logger LOG= (Logger) LoggerFactory.getLogger(FacturaRepoImpl.class);
 	
 	
 	@PersistenceContext
@@ -82,6 +83,22 @@ public class FacturaRepoImpl implements IFacturaRepo {
 				return listaFactura;
 	}
 	
-	
+	@Override
+	public List<Factura> buscarPorFechaJOINfetch(LocalDate fecha) {
+		TypedQuery<Factura> myQuery= this.entityManager.createQuery("SELECT f FROM Factura f JOIN FETCH f.detalles d WHERE f.fecha<=:fecha", Factura.class);
+		myQuery.setParameter("fecha", fecha);
+		
+		
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<FacturaSencillaTO> buscarPorFechaSencilla(LocalDate fecha) {
+		TypedQuery<FacturaSencillaTO> myQuery= this.entityManager.createQuery("SELECT NEW ec.edu.uce.modelo.jpa.FacturaSencillaTO(f.numero,f.cedula)  FROM Factura f JOIN FETCH f.detalles d WHERE f.fecha<=:fecha", FacturaSencillaTO.class);
+		myQuery.setParameter("fecha", fecha);
+		
+		
+		return myQuery.getResultList();
+	}
 
 }
