@@ -17,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ch.qos.logback.core.net.server.Client;
 import ec.edu.uce.modelo.Paciente;
 import ec.edu.uce.modelo.Receta;
+import ec.edu.uce.modelo.Turista;
 import ec.edu.uce.modelo.jpa.Cliente;
 import ec.edu.uce.modelo.jpa.DetalleFactura;
 import ec.edu.uce.modelo.jpa.Factura;
@@ -29,6 +30,7 @@ import ec.edu.uce.service.IFacturaService;
 import ec.edu.uce.service.IGestorCitaService;
 import ec.edu.uce.service.IGuardiaService;
 import ec.edu.uce.service.IPacienteService;
+import ec.edu.uce.service.ITuristaService;
 
 @SpringBootApplication
 public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
@@ -51,6 +53,9 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IClienteServicejpa clienteService;
+	
+	@Autowired ITuristaService turisService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoSpringJpaJyApplication.class, args);
 	}
@@ -159,13 +164,13 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 			LOG.info(f.toString());
 		}
 		*/
-		/*
-		List<Factura> listaFetch=this.facturaService.buscarPorFechaJOINfetch(LocalDate.now());
-		LOG.info("*****************fetch**********Longitud"+listaFetch.size());
-		for(Factura f: listaFetch) {
-			LOG.info(f.toString());
-			LOG.info("Detalles: " +f.getDetalles());
-		}*/
+		
+//		List<Factura> listaFetch=this.facturaService.buscarPorFechaJOINfetch(LocalDate.now());
+//		LOG.info("*****************fetch**********Longitud"+listaFetch.size());
+//		for(Factura f: listaFetch) {
+//			LOG.info(f.toString());
+//			LOG.info("Detalles: " +f.getDetalles());
+//		}
 		
 		/*
 		List<DetalleFactura> listaPrecio=this.detalleService.BuscarProductos(new BigDecimal(50), LocalDate.now());
@@ -187,9 +192,50 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		clienteService.insertar(cliente);
 		*/
 		
+		/*
+		
 		List<FacturaSencillaTO> listaFactura=this.facturaService.buscarPorFechaSencilla(LocalDate.now());
 		for (FacturaSencillaTO f : listaFactura) {
 			LOG.info(f.toString());
+		}
+		*/
+		
+		////////////////modulo 3
+		/*
+		Turista turista=new Turista();
+		turista.setAbono(new BigDecimal(30));
+		turista.setNombre("jessi");
+		turista.setValor(new BigDecimal(70));
+		this.turisService.create(turista);
+		
+		Turista turista2=new Turista();
+		turista2.setAbono(new BigDecimal(20));
+		turista2.setNombre("taty");
+		turista2.setValor(new BigDecimal(70));
+		this.turisService.create(turista2);
+		
+		Turista turista3=new Turista();
+		turista3.setAbono(new BigDecimal(60));
+		turista3.setNombre("nancy");
+		turista3.setValor(new BigDecimal(70));
+		this.turisService.create(turista3);
+		
+		Turista turista4=new Turista();
+		turista4.setAbono(new BigDecimal(40));
+		turista4.setNombre("pedro");
+		turista4.setValor(new BigDecimal(70));
+		this.turisService.create(turista4);
+		
+		Turista turista5=new Turista();
+		turista5.setAbono(new BigDecimal(50));
+		turista5.setNombre("andres");
+		turista5.setValor(new BigDecimal(70));
+		this.turisService.create(turista5);
+		*/
+		List<Turista> listaTuristasSaldo=this.turisService.obtenerTodosTuristas();
+		
+		for (Turista turista6 : listaTuristasSaldo) {
+			LOG.info(turista6.toString());
 		}
 		
 	}
