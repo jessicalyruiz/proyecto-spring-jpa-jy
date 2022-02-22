@@ -26,6 +26,7 @@ import ec.edu.uce.modelo.jpa.FacturaSencillaTO;
 import ec.edu.uce.modelo.jpa.Guardia;
 import ec.edu.uce.repository.jpa.GuardiaRepoImpl;
 import ec.edu.uce.service.IClienteServicejpa;
+import ec.edu.uce.service.ICuentaBancariaService;
 import ec.edu.uce.service.IDetalleFacturaService;
 import ec.edu.uce.service.IFacturaService;
 import ec.edu.uce.service.IGestorCitaService;
@@ -56,6 +57,9 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 	private IClienteServicejpa clienteService;
 	
 	@Autowired ITuristaService turisService;
+	
+	@Autowired
+	ICuentaBancariaService cuentaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoSpringJpaJyApplication.class, args);
@@ -241,14 +245,14 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		
 		
 		//taller 32
-		
+		/*
 		CuentaBancaria cuenta=new CuentaBancaria();
 		
 		cuenta.setClienteCedula("2300");
 		cuenta.setNumero("45454");
 		cuenta.setSaldo(new BigDecimal(8956565));
 		cuenta.setTipo("ahorros");
-		
+		cuentaService.create(cuenta);
 		
 	CuentaBancaria cuenta2=new CuentaBancaria();
 		
@@ -256,7 +260,12 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		cuenta2.setNumero("363");
 		cuenta2.setSaldo(new BigDecimal(505));
 		cuenta2.setTipo("ahorros");
+		cuentaService.create(cuenta2);
+		*/
 		
+		
+		cuentaService.realizarTranferencia("363", "45454", new BigDecimal(7070));
+		//LOG.info(null);
 	}
 	
 	

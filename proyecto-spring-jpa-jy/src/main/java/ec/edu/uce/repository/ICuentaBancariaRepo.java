@@ -8,4 +8,6 @@ public interface ICuentaBancariaRepo {
 	public CuentaBancaria read(Integer id); 
 	public void update(CuentaBancaria cuentaBancaria); 
 	public void delete(Integer id); 
+	
+	public CuentaBancaria buscarCuentaNumero(String numero);
 }
