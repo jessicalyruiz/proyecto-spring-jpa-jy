@@ -19,6 +19,7 @@ import ec.edu.uce.modelo.Paciente;
 import ec.edu.uce.modelo.Receta;
 import ec.edu.uce.modelo.Turista;
 import ec.edu.uce.modelo.jpa.Cliente;
+import ec.edu.uce.modelo.jpa.CuentaBancaria;
 import ec.edu.uce.modelo.jpa.DetalleFactura;
 import ec.edu.uce.modelo.jpa.Factura;
 import ec.edu.uce.modelo.jpa.FacturaSencillaTO;
@@ -232,11 +233,29 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		turista5.setValor(new BigDecimal(70));
 		this.turisService.create(turista5);
 		*/
-		List<Turista> listaTuristasSaldo=this.turisService.obtenerTodosTuristas();
+//		List<Turista> listaTuristasSaldo=this.turisService.obtenerTodosTuristas();
+//		
+//		for (Turista turista6 : listaTuristasSaldo) {
+//			LOG.info(turista6.toString());
+//		}
 		
-		for (Turista turista6 : listaTuristasSaldo) {
-			LOG.info(turista6.toString());
-		}
+		
+		//taller 32
+		
+		CuentaBancaria cuenta=new CuentaBancaria();
+		
+		cuenta.setClienteCedula("2300");
+		cuenta.setNumero("45454");
+		cuenta.setSaldo(new BigDecimal(8956565));
+		cuenta.setTipo("ahorros");
+		
+		
+	CuentaBancaria cuenta2=new CuentaBancaria();
+		
+		cuenta2.setClienteCedula("17063");
+		cuenta2.setNumero("363");
+		cuenta2.setSaldo(new BigDecimal(505));
+		cuenta2.setTipo("ahorros");
 		
 	}
 	
