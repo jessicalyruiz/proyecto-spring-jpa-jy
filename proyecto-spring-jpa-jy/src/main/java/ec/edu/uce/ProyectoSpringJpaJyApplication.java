@@ -264,8 +264,9 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		*/
 		
 		
-		cuentaService.realizarTranferencia("363", "45454", new BigDecimal(7070));
-		//LOG.info(null);
+			cuentaService.realizarTranferencia("363", "45454", new BigDecimal(7070));
+		
+		
 	}
 	
 	

@@ -5,15 +5,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-
+import ec.edu.uce.ProyectoSpringJpaJyApplication;
 import ec.edu.uce.modelo.jpa.CuentaBancaria;
 
 @Repository
 @Transactional
 public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo{
-
+	private static final Logger LOG= (Logger) LoggerFactory.getLogger(ProyectoSpringJpaJyApplication.class);
+	
 	@PersistenceContext
 	EntityManager entityManager;
 	
@@ -47,6 +50,17 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo{
 		myQuery.setParameter("valor", numero);
 		
 		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public void actualizar(CuentaBancaria cuentaBancaria) {
+		// TODO Auto-generated method stub
+		this.entityManager.merge(cuentaBancaria);
+		try {
+		throw new ArrayIndexOutOfBoundsException();
+		}catch (ArrayIndexOutOfBoundsException e) {
+			LOG.error("Error Actualizar");
+	}
 	}
 
 }
