@@ -56,11 +56,11 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo{
 	public void actualizar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(cuentaBancaria);
-		try {
+		//try {
 		throw new ArrayIndexOutOfBoundsException();
-		}catch (ArrayIndexOutOfBoundsException e) {
-			LOG.error("Error Actualizar");
-	}
+//		}catch (ArrayIndexOutOfBoundsException e) {
+//			LOG.error("Error Actualizar");
+//	}
 	}
 
 }
