@@ -64,13 +64,18 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 		
 		cuentaD.setSaldo(cuentaD.getSaldo().add(valorTranferir));
 		LOG.info("AA1");
-		this.cuentaRepo.update(cuentaD);
+		try {
+			this.cuentaRepo.update(cuentaD);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			LOG.info("Llego el error de update");
+		}
+		
 		LOG.info("DA1");
 		LOG.info("AA2");
 		try {
 		this.cuentaRepo.actualizar(cuentaO);
 		}catch (ArrayIndexOutOfBoundsException e) {
-			LOG.error("Error");
+			LOG.error("Error en actualizar");
 		}
 		LOG.info("DA2");
 		
