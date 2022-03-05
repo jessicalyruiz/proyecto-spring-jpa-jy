@@ -13,6 +13,10 @@ import org.springframework.stereotype.Repository;
 import ec.edu.uce.ProyectoSpringJpaJyApplication;
 import ec.edu.uce.modelo.jpa.CuentaBancaria;
 
+/**
+ * @author Jessirena
+ *
+ */
 @Repository
 @Transactional
 public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo{
@@ -34,10 +38,11 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo{
 	}
 
 	@Override
+	@Transactional(value = TxType.MANDATORY)
 	public void update(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(cuentaBancaria);
-		throw new ArrayIndexOutOfBoundsException();
+		//throw new ArrayIndexOutOfBoundsException();
 	}
 
 	@Override
@@ -55,7 +60,7 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo{
 	}
 
 	@Override
-	@Transactional(value = TxType.REQUIRES_NEW)
+	@Transactional(value = TxType.MANDATORY)
 	public void actualizar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(cuentaBancaria);
@@ -65,5 +70,17 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo{
 //			LOG.error("Error Actualizar");
 //	}
 	}
+
+	/**
+	 *para el scope never
+	 */
+	@Override
+	@Transactional(value = TxType.NEVER)
+	public void enviarMail(String asunto) {
+		// TODO Auto-generated method stub
+		LOG.info("se envia el mail");
+	}
+
+
 
 }

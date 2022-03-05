@@ -11,4 +11,7 @@ public interface ICuentaBancariaRepo {
 	public void actualizar(CuentaBancaria cuentaBancaria); 
 	
 	public CuentaBancaria buscarCuentaNumero(String numero);
+	//public void enviarMail(CuentaBancaria cuenta);
+
+	public void enviarMail(String asunto);
 }
