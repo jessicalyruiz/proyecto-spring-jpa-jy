@@ -110,7 +110,7 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 	
 	@Override
 	
-	@Transactional(value = TxType.SUPPORTS)
+	@Transactional(value = TxType.REQUIRES_NEW)
 	public void realizarTranferenciaExpress(String cuantaOrigen, String cuentaDestino, BigDecimal valorTranferir) {
 		// TODO Auto-generated method stub
 		LOG.info("****ejecucion supports");

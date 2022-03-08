@@ -25,6 +25,7 @@ import ec.edu.uce.modelo.jpa.Factura;
 import ec.edu.uce.modelo.jpa.FacturaSencillaTO;
 import ec.edu.uce.modelo.jpa.Guardia;
 import ec.edu.uce.repository.jpa.GuardiaRepoImpl;
+import ec.edu.uce.service.CuentaBancariaFachadaServiceImpl;
 import ec.edu.uce.service.IClienteServicejpa;
 import ec.edu.uce.service.ICuentaBancariaService;
 import ec.edu.uce.service.IDetalleFacturaService;
@@ -60,6 +61,8 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 	
 	@Autowired
 	ICuentaBancariaService cuentaService;
+	
+	@Autowired CuentaBancariaFachadaServiceImpl cuantaFachada;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoSpringJpaJyApplication.class, args);
@@ -276,7 +279,8 @@ public class ProyectoSpringJpaJyApplication implements CommandLineRunner {
 		
 		//never
 		//this.cuentaService.enviarMail();
-		this.cuentaService.enviarMailNoT();
+		//this.cuentaService.enviarMailNoT();
+		cuantaFachada.realizarTranferenciaExpressInicialNoT("45454", "363", new BigDecimal(70));
 
 	}
 	
