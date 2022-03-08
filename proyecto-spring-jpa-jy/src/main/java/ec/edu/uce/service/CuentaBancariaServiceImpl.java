@@ -51,6 +51,7 @@ public class CuentaBancariaServiceImpl implements ICuentaBancariaService {
 	}
 
 	@Override
+	@Transactional(value = TxType.NOT_SUPPORTED)
 	public CuentaBancaria buscarCuentaNumero(String numero) {
 		// TODO Auto-generated method stub
 		return this.cuentaRepo.buscarCuentaNumero(numero);
