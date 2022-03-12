@@ -90,7 +90,7 @@ public class MainFuncional {
 		//Function
 		System.out.println("***Funtion");
 		List<String> letras=Arrays.asList("casa","carro", "patio");
-		Stream<String> letraMayus=letras.stream().map(t -> t.toUpperCase());
+		Stream<String> letraMayus=letras.stream().map(t -> t.toUpperCase());//convierto a mayusculas
 		letraMayus.forEach(n->System.out.println(n));
 		
 	}
